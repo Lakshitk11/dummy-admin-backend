@@ -10,6 +10,12 @@ connectDB();
 
 const app = express();
 
+// Add Private Network Access header support
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Private-Network', 'true');
+  next();
+});
+
 // Configure CORS to accept your local testing environment AND your live Vercel frontend
 const allowedOrigins = [
   'http://localhost:5173',           // Local Vite environment
