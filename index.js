@@ -36,8 +36,9 @@ app.use(cors({
   credentials: true // Enable this if you send cookies or authorization headers
 }));
 
-// Parse incoming JSON requests
-app.use(express.json());
+// Parse incoming JSON requests with increased limit to handle base64 images
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 // Main router mounting 
 app.use("/", router);
